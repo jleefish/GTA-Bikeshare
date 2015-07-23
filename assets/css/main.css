@@ -1,0 +1,50 @@
+@import url(http://fonts.googleapis.com/css?family=Lobster|Roboto|Montserrat|Dancing+Script);
+
+body{
+    font-family:'Montserrat', sans-serif;
+}
+
+#app-title{
+    font-family:'Dancing Script', sans-serif;
+    font-size:3em;
+    width:100%;
+    margin:0 auto;
+}
+
+#app-logo{
+    width:200px;
+    height:127px;
+    display:block;
+    margin:0 auto;
+    margin-bottom:20px;
+}
+
+.card{
+    color:white;
+    text-align:center;
+    font-size:2em;
+    margin:10px;
+    padding:40px;       
+}
+
+.statistic{
+    text-align:center;
+    font-size:2em;
+    margin:0;
+}
+
+.card.percent-bikes{
+    background-color:#217EFF;
+}    
+
+.card.total-docks{
+    background-color:#50aa20;
+}
+
+.card.num-locations{
+    background-color:#C4394C;
+}
+
+
+
+

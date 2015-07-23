@@ -3,14 +3,15 @@
 <head>
 	<title>GTA-Bikeshare</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Jquery -->
+    <script src="/vendors/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <!-- Jquery Mobile -->
+    <link rel="stylesheet" href="/vendors/jquery.mobile-1.4.5.min.css" />
+    <script type="text/javascript" src="/vendors/jquery.mobile-1.4.5.min.js"></script>
 
-<!-- Jquery -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
-<!-- Jquery Mobile -->
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-<script type="text/javascript" src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-<link rel="stylesheet" href="css/main.css"/>
-<!-- custom scripts -->
+
+    <link rel="stylesheet" href="/assets/css/main.css"/>
+
 
 </head>
 <body>
@@ -20,33 +21,78 @@
         <div data-role="navbar">
             <ul>
                 <li><a href="#" class="ui-btn-active ui-state-persist">Home</a></li>
-                <li><a href="#">Reports</a></li>
+                <li><a href="#reports-page">Reports</a></li>
                 <li><a href="#">Map</a></li>
+                <li><a href="#">Locations</a></li>
             </ul>
         </div>
 
         <div data-role="header">
             <h1 id="app-title">GTA Bikeshare</h1>
-            <img id="app-logo" src="/img/bike-logo.png"></img>
+            <img id="app-logo" src="/assets/img/bike-logo.png"></img>
         </div>
 
         <div data-role="content">
             <div class="ui-grid-a">
-                <div class="ui-block-a home-card percent-bikes-block">
-                    <h1 id="percent-bikes-num"></h1>currently available
+                <div class="ui-block-a">
+                    <div class="card percent-bikes">
+                        <h1 class="statistic"></h1>docks currently available
+                    </div>
                 </div>
-                <div class="ui-block-b home-card total-docks-block">
-                    <h1 id="total-docks-num"></h1>total docks
+                <div class="ui-block-b">
+                    <div class="card total-docks">
+                        <h1 class="statistic"></h1>total docks
+                    </div>
                 </div>
+                 <div class="ui-block-a">
+                    <div class="card num-locations">
+                        <h1 class="statistic"></h1>station locations
+                    </div>
+                </div>
+
+
             </div>
         </div>
 
-        <div data-role="footer">
-                Footer
-        </div>
     </div>
 
-<script type="text/javascript" src="js/home-page.js"></script>
+
+    <div data-role="page" data-theme="b" id="reports-page" >
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#home-page" >Home</a></li>
+                <li><a href="#" class="ui-btn-active ui-state-persist">Reports</a></li>
+                <li><a href="#">Map</a></li>
+                <li><a href="#">Locations</a></li>
+            </ul>
+        </div>
+
+        <div data-role="content">
+            <ul data-role="listview" data-inset="true">
+                <li><a href="#detailed-reports-page">Bikeshare Report</a></li>
+            </ul>
+        </div>  
+    </div>
+
+    <div data-role="page" data-theme="b" id="detailed-reports-page" >
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#home-page" >Home</a></li>
+                <li><a href="#reports-page" class="ui-btn-active ui-state-persist">Reports</a></li>
+                <li><a href="#">Map</a></li>
+                <li><a href="#">Locations</a></li>
+            </ul>
+        </div>
+
+        <div data-role="header" data-add-back-btn="true">
+
+        </div>
+
+        <div data-role="content"></div>
+
+    </div>  
+
+<script type="text/javascript" src="/assets/js/main.js"></script>
 </body>
 </html> 
 
