@@ -15,7 +15,6 @@
       #wrapper {
         width: 200px;
         margin: 0 auto;
-        /*padding: 0;*/
         text-align: center;
 
       }
@@ -30,19 +29,6 @@
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script type="text/javascript">
-      // $(function() {
-      //   $.ajax({
-      //     type: "GET",
-      //     url: "bikeshare.json",
-      //     dataType: "json",
-      //     success: initialize,
-      //     error: function (request,error) {
-      //           alert('Network error has occurred. ');
-      //       }
-      //   });
-      // });    
-
-
 
     $.getJSON("bikeshare.json", 
       function initialize(data) {
@@ -119,22 +105,7 @@
             <div class="ui-block-b">0 ~ 5</div>
             <div class="ui-block-c">5 +</div>
           </div><!-- /grid-b -->
-          
         </div>
-        <!-- <table align="center">
-        <col width="50">
-          <tr>
-            <td><img src="cycling_gray.png"></td>
-            <td><img src="cycling_red.png"></td>
-            <td><img src="cycling_green.png"></td>
-          </tr>
-          
-          <tr>
-            <td>0</td>
-            <td>0 ~ 5</td>
-            <td>5 +</td>
-          </tr>
-        </table> -->
       </div><!-- content -->
       <div role="main" class="ui-content" id="map-canvas"></div>
       <div data-role="footer">
