@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100%; width: 100%;}
+      body { height: 100%; width: 100%; padding: 0}
+      #map-canvas { 
+        max-width: 480px; 
+        height: 480px ;
+        margin: 0 auto ; 
+        padding: 0; 
+
+      }
+      #wrapper {
+        width: 200px;
+        margin: 0 auto;
+        /*padding: 0;*/
+        text-align: center;
+
+      }
+
+      
+
+    </style>
+    <script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD3nlY3mIMlBkgwWM5eeLMZQic5SU5rCgI&sensor=false">
+    </script>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript">
+      // $(function() {
+      //   $.ajax({
+      //     type: "GET",
+      //     url: "bikeshare.json",
+      //     dataType: "json",
+      //     success: initialize,
+      //     error: function (request,error) {
+      //           alert('Network error has occurred. ');
+      //       }
+      //   });
+      // });    
+
+
+
+    $.getJSON("bikeshare.json", 
+      function initialize(data) {
+
+        var stationList = data.stationBeanList;
+        var myOptions = {
+          center: new google.maps.LatLng(43.654188, -79.380805),
+          zoom: 13,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+        var markerImg="cycling_red.png";
+
+        function selectMarker(i){
+          var markerIndex = stationList[i].availableBikes;
+          if(markerIndex == 0){
+            markerImg = "cycling_gray.png";
+          } else if(markerIndex <= 5 && markerIndex != 0){
+            markerImg = "cycling_red.png";
+          } else if(markerIndex > 5) {
+            markerImg = "cycling_green.png";
+          }
+        }
+
+        function attatchMessage(marker, num){
+          var availableBikes = stationList[num].availableBikes;
+          var totalDocks = stationList[num].totalDocks;
+          var stationName = stationList[num].stationName;
+
+          var contentString = 
+          "<div>Statino Name: " + stationName + "</div>"
+          +"<div>Total Docks: " + totalDocks + "</div>"
+          +"<div>Available Bikes: "+ availableBikes + "</div>"
+
+          var infowindow = new google.maps.InfoWindow({
+                   content: contentString
+          });
+
+          google.maps.event.addListener(marker, 'click', function() {
+              infowindow.open(marker.get('map'),marker);
+              console.log(infowindow);
+          });
+        }
+
+        // adding marker    
+        for (var i = 0; i < stationList.length; i++) {
+          var position = new google.maps.LatLng(stationList[i].latitude, stationList[i].longitude);
+          selectMarker(i);
+          var marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            icon: markerImg,
+            title: "Bike Share Station"
+          });
+
+          attatchMessage(marker, i);
+        }
+    });
+    </script>
+  </head>
+  <body>
+    <div data-role="page" data-url="map-page" id="map-page">
+      <div  data-role="header" data-theme="a">
+        <h1>STATION MAPS</h1>
+      </div> <!-- header -->
+      <div data-role="content">
+        <!-- ui-grid-b -->
+        <div id="wrapper">
+          <div class="ui-grid-b">
+            <div class="ui-block-a"><img src="cycling_gray.png"></div>
+            <div class="ui-block-b"><img src="cycling_red.png"></div>
+            <div class="ui-block-c"><img src="cycling_green.png"></div>
+            <div class="ui-block-a">0</div>
+            <div class="ui-block-b">0 ~ 5</div>
+            <div class="ui-block-c">5 +</div>
+          </div><!-- /grid-b -->
+          
+        </div>
+        <!-- <table align="center">
+        <col width="50">
+          <tr>
+            <td><img src="cycling_gray.png"></td>
+            <td><img src="cycling_red.png"></td>
+            <td><img src="cycling_green.png"></td>
+          </tr>
+          
+          <tr>
+            <td>0</td>
+            <td>0 ~ 5</td>
+            <td>5 +</td>
+          </tr>
+        </table> -->
+      </div><!-- content -->
+      <div role="main" class="ui-content" id="map-canvas"></div>
+      <div data-role="footer">
+        <h4>GTA BIKE SHARE</h4>
+      </div><!-- /footer -->
+    </div><!-- page --> 
+  </body>
+</html>
